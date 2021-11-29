@@ -9,6 +9,7 @@ import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
+import logique.Create;
 
 public class ReaderXML{
 	public static void xml_reader(String name) {
@@ -31,7 +32,7 @@ public class ReaderXML{
 				if(r.next() == XMLStreamConstants.START_ELEMENT) {
 					if(r.getName().toString() == "client") {
 						liste.add(f.initializeClient(id_client, liste.get(1), liste.get(5), liste.get(2), liste.get(0)));;
-						//id_client = Integer.parseInt(r.getAttributeValue(0));
+						id_client = Integer.parseInt(r.getAttributeValue(0));
 					}
 					if (r.getName().toString() == "planche") {
 						try {
@@ -47,10 +48,6 @@ public class ReaderXML{
 	                        String[] allprice = prix.split("\\.");
 	                        a = Integer.parseInt(allprice[0]);
 	                        b = Integer.parseInt(allprice[1]);
-	                        
-	                        //list.add(f.initializeDate(jour, mois, annee));
-	                        //list.add(f.initializePrix(prix));
-	                        //list.add(f.initializeNbBois(nombre));
 						}
 						catch(NumberFormatException e) {
 							System.out.println("Bad arguments type!");
@@ -64,10 +61,6 @@ public class ReaderXML{
 	                        String[] lDim = lString.split("\\.");
 	                        Longueur = Integer.parseInt(LDim[0]);
 	                        largeur = Integer.parseInt(lDim[0]);
-	                        
-	                        //list.add(f.initializeDimensions(L,l));
-	                        //list.add(f.initializePlanche(list.get(3),idPlanche));
-	                        //list.add(f.initializeBois(list.get(3),idPlanche));
 						}
 						catch(NumberFormatException e) {
 							System.out.println("Bad arguments type!");
@@ -95,7 +88,7 @@ public class ReaderXML{
 	        	if(r.next() == XMLStreamConstants.START_ELEMENT) {
 	        		if(r.getName().toString() == "fournisseur") {
 	        			liste.add(f.initializeClient(id_fournisseur, liste.get(1), liste.get(5), liste.get(2), liste.get(0)));;
-	        			//id_fournisseur = Integer.parseInt(r.getAttributeValue(0));
+	        			id_fournisseur = Integer.parseInt(r.getAttributeValue(0));
 	        		}
 	        		if(r.getName().toString() == "panneau") {
 	        			try {
@@ -111,10 +104,6 @@ public class ReaderXML{
 	                        String[] allprice = prix.split("\\.");
 	                        a = Integer.parseInt(allprice[0]);
 	                        b = Integer.parseInt(allprice[1]);
-	                        
-	                        //list.add(f.initializeDate(jour, mois, annee));
-	                        //list.add(f.initializePrix(prix));
-	                        //list.add(f.initializeNbBois(nombre));
 	        			}
 	        			catch(NumberFormatException e) {
 	        				System.out.println("Bad Arguments!");
@@ -127,10 +116,6 @@ public class ReaderXML{
 	                            String[] lDim = lString.split("\\.");
 	                            Longueur = Integer.parseInt(LDim[0]);
 	                            largeur = Integer.parseInt(lDim[0]);
-	                            
-	                            //list.add(f.initializeDimensions(L,l));
-	                            //list.add(f.initializePlanche(list.get(3),idPanneau));
-	                            //list.add(f.initializeBois(list.get(3),idPanneau));
 	        				}
 	        				catch(NumberFormatException e) {
 	        					System.out.println("Bad Arguments!");
@@ -143,7 +128,45 @@ public class ReaderXML{
 		}
 		
 		static ArrayList<Create> read_decoupe(XMLStreamReader r){
-			
+			ArrayList<Create> liste = new ArrayList<>();
+			int id_fournisseur;
+	        int id_client;
+	        int id_planche=0;
+	        int id_panneau=0;
+	        int x;
+	        int y;
+	        while(r.hasNext()) {
+	        	if (r.next() == XMLStreamConstants.START_ELEMENT) {
+	        		if(r.getName().toString() == "fournisseur") {
+	        			try {
+	        				id_fournisseur = Integer.parseInt(r.getAttributeValue(0));
+	        				id_panneau = Integer.parseInt(r.getAttributeValue(1));
+	        			}
+	        			catch(NumberFormatException e) {
+	        				System.out.println("Bad Arguments");
+	        			}
+	        		}
+	        		if(r.getName().toString() == "client") {
+	        			try {
+	        				id_client = Integer.parseInt(r.getAttributeValue(0));
+	        				id_planche = Integer.parseInt(r.getAttributeValue(1));
+	        			}
+	        			catch(NumberFormatException e) {
+	        				System.out.println("Bad Arguments");
+	        			}
+	        		}
+	        		if(r.getName().toString() == "position") {
+	        			try {
+	        				x = Math.round(Float.parseFloat(r.getAttributeValue(0)));
+	        				y = Math.round(Float.parseFloat(r.getAttributeValue(1)));
+	        			}
+	        			catch(NumberFormatException e) {
+	        				System.out.println("Bad Arguments");
+	        			}
+	        		}
+	        	}
+	        }
+	        return liste;
 		}
 			
 		//Gestion des exceptions...
