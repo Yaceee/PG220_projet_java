@@ -3,16 +3,16 @@ package logique
 
 class Personnes implements Validable{
 	int id;
-	Price price;
-	Date date;
+	Prix prix;
+	validDate date;
 	
-	Customer(int id, Price price, Date date){
+	Personne(int id, Prix prix, validDate date){
 		this.id = id;
-		this.price = price;
+		this.prix = prix;
 		this.date = date;
 	}
 	
-	public boolean Valide() {
+	public boolean isValide() {
 		if (id < 0) {
 			return(false);
 		}
