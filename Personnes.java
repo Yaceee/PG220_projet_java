@@ -1,6 +1,5 @@
 package logique
 
-
 class Personnes implements Validable{
 	int id;
 	Prix prix;
@@ -13,11 +12,15 @@ class Personnes implements Validable{
 	}
 	
 	public boolean isValide() {
-		if (id < 0) {
-			return(false);
+		if (id >= 0) {
+			if(date.isValid()) {
+				if(prix.isValid()) {
+					return true;
+				}
+			}
 		}
 		else {
-			return(true);
+			return false;
 		}
 	}
 }
