@@ -6,7 +6,7 @@ class Dimension implements Validable {
 	//Gestion des exceptions:
 	Dimensions(float Longueur, float largeur){
 		try {
-			if (l > 0 && L > l) {
+			if (largeur > 0 && Longueur > largeur && Longueur > 0) {
 				this.Longueur = Longueur;
 				this.largeur = largeur;
 			}
@@ -19,7 +19,7 @@ class Dimension implements Validable {
 		}
 	}
 	
-	public boolean Valide() {
+	public boolean isValide() {
 		if (this.Longueur < this.largeur || this.largeur < 0 || this.Longueur < 0) {
 			return(false);
 		}
