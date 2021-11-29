@@ -38,16 +38,16 @@ public class ReaderXML{
 						try {
 							nombre++;
 							id_planche = Integer.parseInt(r.getAttributeValue(0));
-	                        nombre = Integer.parseInt(r.getAttributeValue(1));
-	                        String dates = (r.getAttributeValue(2));
-	                        String[] allDates = dates.split("\\.");
-	                        jour = Integer.parseInt(allDates[0]);
-	                        mois = Integer.parseInt(allDates[1]);
-	                        annee = Integer.parseInt(allDates[2]);
-	                        String prix = (r.getAttributeValue(3));
-	                        String[] allprice = prix.split("\\.");
-	                        a = Integer.parseInt(allprice[0]);
-	                        b = Integer.parseInt(allprice[1]);
+							nombre = Integer.parseInt(r.getAttributeValue(1));
+							String dates = (r.getAttributeValue(2));
+							String[] allDates = dates.split("\\.");
+							jour = Integer.parseInt(allDates[0]);
+							mois = Integer.parseInt(allDates[1]);
+							annee = Integer.parseInt(allDates[2]);
+							String prix = (r.getAttributeValue(3));
+							String[] allprice = prix.split("\\.");
+							a = Integer.parseInt(allprice[0]);
+							b = Integer.parseInt(allprice[1]);
 						}
 						catch(NumberFormatException e) {
 							System.out.println("Bad arguments type!");
@@ -56,11 +56,11 @@ public class ReaderXML{
 					if(r.getName().toString() == "dim") {
 						try {
 							String LString = (r.getAttributeValue(0));
-	                        String lString = (r.getAttributeValue(1));
-	                        String[] LDim = LString.split("\\.");
-	                        String[] lDim = lString.split("\\.");
-	                        Longueur = Integer.parseInt(LDim[0]);
-	                        largeur = Integer.parseInt(lDim[0]);
+							String lString = (r.getAttributeValue(1));
+							String[] LDim = LString.split("\\.");
+							String[] lDim = lString.split("\\.");
+							Longueur = Integer.parseInt(LDim[0]);
+							largeur = Integer.parseInt(lDim[0]);
 						}
 						catch(NumberFormatException e) {
 							System.out.println("Bad arguments type!");
@@ -94,16 +94,16 @@ public class ReaderXML{
 	        			try {
 	        				nombre++;
 	        				id_panneau = Integer.parseInt(r.getAttributeValue(0));
-	                        nombre = Integer.parseInt(r.getAttributeValue(1));
-	                        String dates = (reader.getAttributeValue(2));
-	                        String[] allDates = dates.split("\\.");
-	                        jour = Integer.parseInt(allDates[0]);
-	                        mois = Integer.parseInt(allDates[1]);
-	                        annee = Integer.parseInt(allDates[2]);
-	                        String prix = (r.getAttributeValue(3));
-	                        String[] allprice = prix.split("\\.");
-	                        a = Integer.parseInt(allprice[0]);
-	                        b = Integer.parseInt(allprice[1]);
+						nombre = Integer.parseInt(r.getAttributeValue(1));
+						String dates = (reader.getAttributeValue(2));
+						String[] allDates = dates.split("\\.");
+						jour = Integer.parseInt(allDates[0]);
+						mois = Integer.parseInt(allDates[1]);
+						annee = Integer.parseInt(allDates[2]);
+						String prix = (r.getAttributeValue(3));
+						String[] allprice = prix.split("\\.");
+						a = Integer.parseInt(allprice[0]);
+						b = Integer.parseInt(allprice[1]);
 	        			}
 	        			catch(NumberFormatException e) {
 	        				System.out.println("Bad Arguments!");
@@ -111,11 +111,11 @@ public class ReaderXML{
 	        			if(r.getName().toString() == "dim") {
 	        				try {
 	        					String LString = (r.getAttributeValue(0));
-	                            String lString = (r.getAttributeValue(1));
-	                            String[] LDim = LString.split("\\.");
-	                            String[] lDim = lString.split("\\.");
-	                            Longueur = Integer.parseInt(LDim[0]);
-	                            largeur = Integer.parseInt(lDim[0]);
+							    String lString = (r.getAttributeValue(1));
+							    String[] LDim = LString.split("\\.");
+							    String[] lDim = lString.split("\\.");
+							    Longueur = Integer.parseInt(LDim[0]);
+							    largeur = Integer.parseInt(lDim[0]);
 	        				}
 	        				catch(NumberFormatException e) {
 	        					System.out.println("Bad Arguments!");
@@ -130,43 +130,43 @@ public class ReaderXML{
 		static ArrayList<Create> read_decoupe(XMLStreamReader r){
 			ArrayList<Create> liste = new ArrayList<>();
 			int id_fournisseur;
-	        int id_client;
-	        int id_planche=0;
-	        int id_panneau=0;
-	        int x;
-	        int y;
-	        while(r.hasNext()) {
-	        	if (r.next() == XMLStreamConstants.START_ELEMENT) {
-	        		if(r.getName().toString() == "fournisseur") {
-	        			try {
-	        				id_fournisseur = Integer.parseInt(r.getAttributeValue(0));
-	        				id_panneau = Integer.parseInt(r.getAttributeValue(1));
-	        			}
-	        			catch(NumberFormatException e) {
-	        				System.out.println("Bad Arguments");
-	        			}
-	        		}
-	        		if(r.getName().toString() == "client") {
-	        			try {
-	        				id_client = Integer.parseInt(r.getAttributeValue(0));
-	        				id_planche = Integer.parseInt(r.getAttributeValue(1));
-	        			}
-	        			catch(NumberFormatException e) {
-	        				System.out.println("Bad Arguments");
-	        			}
-	        		}
-	        		if(r.getName().toString() == "position") {
-	        			try {
-	        				x = Math.round(Float.parseFloat(r.getAttributeValue(0)));
-	        				y = Math.round(Float.parseFloat(r.getAttributeValue(1)));
-	        			}
-	        			catch(NumberFormatException e) {
-	        				System.out.println("Bad Arguments");
-	        			}
-	        		}
-	        	}
-	        }
-	        return liste;
+			int id_client;
+			int id_planche=0;
+			int id_panneau=0;
+			int x;
+			int y;
+			while(r.hasNext()) {
+	        		if (r.next() == XMLStreamConstants.START_ELEMENT) {
+					if(r.getName().toString() == "fournisseur") {
+						try {
+							id_fournisseur = Integer.parseInt(r.getAttributeValue(0));
+							id_panneau = Integer.parseInt(r.getAttributeValue(1));
+						}
+						catch(NumberFormatException e) {
+							System.out.println("Bad Arguments");
+						}
+					}
+					if(r.getName().toString() == "client") {
+						try {
+							id_client = Integer.parseInt(r.getAttributeValue(0));
+							id_planche = Integer.parseInt(r.getAttributeValue(1));
+						}
+						catch(NumberFormatException e) {
+							System.out.println("Bad Arguments");
+						}
+					}
+					if(r.getName().toString() == "position") {
+						try {
+							x = Math.round(Float.parseFloat(r.getAttributeValue(0)));
+							y = Math.round(Float.parseFloat(r.getAttributeValue(1)));
+						}
+						catch(NumberFormatException e) {
+							System.out.println("Bad Arguments");
+						}
+					}
+				}
+			}
+			return liste;
 		}
 			
 		//Gestion des exceptions...
