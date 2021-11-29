@@ -13,15 +13,36 @@ import javax.xml.stream.XMLStreamReader;
 public class ReaderXML{
 	public static void xml_reader(String name) {
 		
-		static ArrayList<> read_client(XMLStreamReader r){
+		static ArrayList<Create> read_client(XMLStreamReader r){
+			ArrayList<Create> liste = new ArrayList<Create>();
+			int Longueur;
+			int largeur;
+			int jour;
+			int mois;
+			int annee;
+			int id_planche;
+			int nombre;
+			int nombre_client;
+			int id_client = Integer.parseInt(r.getAttributeValue(0));
+			while(r.hasNext()) {
+				if(r.next() == XMLStreamConstants.START_ELEMENT) {
+					if(r.getName().toString() == "client") {
+						list.add(f.initializeClient(id_client, list.get(1), list.get(5), list.get(2), list.get(0)));
+						//id_client = Integer.parseInt(r.getAttributeValue(0));
+					}
+					if (r.getName().toString() == "planche") {
+						
+					}
+				}
+			}
 			
 		}
 		
-		static ArrayList<> read_fournisseur(XMLStreamReader r){
+		static ArrayList<Create> read_fournisseur(XMLStreamReader r){
 			
 		}
 		
-		static ArrayList<> read_decoupe(XMLStreamReader r){
+		static ArrayList<Create> read_decoupe(XMLStreamReader r){
 			
 		}
 			
@@ -32,13 +53,16 @@ public class ReaderXML{
 			while(r.hasNext() == true) {
 				if(r.next() == XMLStreamConstants.START_ELEMENT) {
 					if(r.getName().toString() == "client") {
-						
+						read_client(r);
+						return;
 					}
 					if(r.getName().toString() == "fournisseur") {
-						
+						read_fournisseur(r);
+						return;
 					}
 					if(r.getName().toString() == "decoupe") {
-						
+						read_decoupe(r);
+						return;
 					}
 				}
 			}
